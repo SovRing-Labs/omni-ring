@@ -117,3 +117,7 @@ pytest tests/ -v
 | **7. AVX2 Kernel Latency** | $< 1.25\text{ }\mu\text{s}$ per 5,120-dim codevector | **0.465 }\mu\text{s}$ (C) / **0.671 }\mu\text{s}$ (Python batch) | **PASS** |
 | **8. Transcoder Reversibility** | $100\%$ lossless roundtrip for active constellations | **100% (5,120/5,120 pairs)** | **PASS** |
 | **9. Seqlock Concurrency** | Zero torn reads across shared memory | **Verified** | **PASS** |
+
+## Dossier
+
+History, specification, metrics, tests and limits: [`DOSSIER.md`](DOSSIER.md). Guide to the whole stack: [Hyperdimensional Computing and You](https://github.com/SovRing-Labs/omniring-research/blob/main/docs/guide/HYPERDIMENSIONAL-COMPUTING-AND-YOU.md).
