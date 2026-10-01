@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 message: "If you use this software, please cite it as below."
 title: "omni-ring: coprime residue ring memory with a check ring and cued resonator readout"
-version: 0.1.0
+version: 0.1.1
 abstract: "Stores small structured records in fixed-size high-dimensional vectors over coprime rings (3, 5, 7, 13) with a redundant 17 check ring, and reads them back by cue-driven soft resonance, CRT reconstruction and explaining-away peeling, on commodity CPUs. Published as prior art."
 authors:
   - family-names: "De Santiago"

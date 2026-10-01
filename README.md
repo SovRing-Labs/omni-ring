@@ -6,6 +6,15 @@
 
 ---
 
+## Disclosures (published as prior art)
+
+- [`TECHNICAL-DISCLOSURE.md`](TECHNICAL-DISCLOSURE.md) — Part 1: coprime residue ring memory, check ring, cued resonator, peeling, facets, mark store.
+- [`TECHNICAL-DISCLOSURE-PART-2.md`](TECHNICAL-DISCLOSURE-PART-2.md) — Part 2: the SuperSeed portable spec, geometry of the sift (cubes, pyramids, spheres, lattices, golden-ratio frequencies, programs as vectors), integrated-GPU execution, the triangle memory (omnitri), and the table / full-text / ring / matrix substrate — with all measured results, including failures.
+
+Code for Part 2 follows in weekly updates.
+
+---
+
 ## Architecture Overview
 
 OMNIRING implements **Residue Hyperdimensional Computing (Residue HDC)** with a **Two-Faced Polymorphic Bus**:
