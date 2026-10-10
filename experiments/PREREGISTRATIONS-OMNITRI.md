@@ -1,9 +1,3 @@
----
-title: OMNITRI — the triangle primitive (imagine/plan step; J 2026-09-30)
-updated: 2026-10-01
-weaver_hash: fd6b71cbdcc0c69cb831537e04987898f5a322e2faec17b8791f1fc2e29d56c8
-weaver_imported: 2026-10-09T22:22:08+00:00
----
 # OMNITRI — the triangle primitive (imagine/plan step; J 2026-09-30)
 Pillar: Nervous System. Lineage: omni-ring (the line as a primitive: exact bulk sift), GEOM plan (unpublished) (torus earns its place
 by binding 1.000 vs 0.018; QUASI-0 golden frequencies; PROG-1 capacity ceiling), CORTEX-LOGIC (Tracker = exact ground truth),
