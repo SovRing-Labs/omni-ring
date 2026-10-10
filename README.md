@@ -10,8 +10,10 @@
 
 - [`TECHNICAL-DISCLOSURE.md`](TECHNICAL-DISCLOSURE.md) — Part 1: coprime residue ring memory, check ring, cued resonator, peeling, facets, mark store.
 - [`TECHNICAL-DISCLOSURE-PART-2.md`](TECHNICAL-DISCLOSURE-PART-2.md) — Part 2: the SuperSeed portable spec, geometry of the sift (cubes, pyramids, spheres, lattices, golden-ratio frequencies, programs as vectors), integrated-GPU execution, the triangle memory (omnitri), and the table / full-text / ring / matrix substrate — with all measured results, including failures.
+- [`TECHNICAL-DISCLOSURE-PART-3.md`](TECHNICAL-DISCLOSURE-PART-3.md) — Part 3: designed codebooks, 4-D cores (2T / 24-cell), the source (a program-vector resonator loop with check slots), seams, real embeddings in torus polygons, the hypervector wire.
+- [`TECHNICAL-DISCLOSURE-PART-4.md`](TECHNICAL-DISCLOSURE-PART-4.md) — Part 4: the sifter as a self-rewriting program in the store, the decode ladder, the learning core, the spinning prism.
 
-Code for Part 2 follows in weekly updates.
+Harnesses, result files and pre-registrations for Parts 3 and 4 are in [`experiments/`](experiments/). Parts 5–7 are in the research corpus ([omniring-research](https://github.com/SovRing-Labs/omniring-research), `docs/disclosures/`). Changes in this release: [`CHANGELOG.md`](CHANGELOG.md).
 
 ---
 
@@ -49,8 +51,10 @@ OMNIRING implements **Residue Hyperdimensional Computing (Residue HDC)** with a 
 
 ## Directory Structure
 
+Core layout (0.2.0 adds more modules; see `CHANGELOG.md`):
+
 ```
-packages/omni-ring/
+omni-ring/
 ├── c_src/
 │   ├── omniring_avx2.h          # C header for AVX2 SIMD routines
 │   ├── omniring_avx2.c          # AVX2 vpshufb 1-cycle lookup & vector arithmetic
@@ -87,6 +91,9 @@ packages/omni-ring/
 
 ```bash
 ./build_kernel.sh          # compiles omni_ring/libomniring_avx2.so (x86-64 + AVX2, gcc/clang with OpenMP)
+./build_kernel_avx512.sh   # compiles omni_ring/libomniring_avx512.so (VNNI sift, VPOPCNTDQ Hamming/ternary); loaded only when
+                           # /proc/cpuinfo has avx512f/bw/vl/vpopcntdq/vnni — then sift.scores(backend="auto") uses it (bit-identical
+                           # to AVX2). Tests: tests/test_avx512.py. OMNI_RING_NO_AVX512=1 turns it off.
 pip install -e .
 ```
 
@@ -96,10 +103,10 @@ Licence: PolyForm Small Business 1.0.0 **or** PolyForm Noncommercial 1.0.0, your
 
 ## Verification & Benchmarks
 
-Run all 33 tests:
+Run the suite (190 passed, 5 skipped on an AVX2 laptop; the 5 skips need AVX-512 or optional tools):
 ```bash
-cd packages/omni-ring
-pytest tests/ -v
+./build_kernel.sh
+python3 -m pytest -q
 ```
 
 ### Verified Gate Results

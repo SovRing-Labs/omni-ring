@@ -1,0 +1,25 @@
+{
+ "notes": 2000,
+ "distinct": 2,
+ "A_today": {
+  "notes_per_s": 22.14497701078981,
+  "p99_ms": 76.07056701090187,
+  "median_ms": 42.23861751961522,
+  "temp_start_c": 77.0,
+  "temp_end_c": 79.0,
+  "wall_s": 90.3139343529474
+ },
+ "B_feeder": {
+  "notes_per_s": 6611.3858729098,
+  "p99_ms_served": 0.00035599805414676666,
+  "temp_start_c": 66.0,
+  "temp_end_c": 78.0,
+  "wall_s": 0.3025084359687753,
+  "embeds": 2
+ },
+ "labels_identical": true,
+ "speedup": 298.55013485398973,
+ "verdict": {
+  "PASS": true
+ }
+}

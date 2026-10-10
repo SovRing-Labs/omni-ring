@@ -1,7 +1,7 @@
 """
 Tests for the PEEL cued multi-sweep readout (omni_ring.peel).
 
-Pre-registered bars, from `_Pads/RING/omni-peel.wave.yaml`:
+Pre-registered bars, from `the peel plan (unpublished)`:
   (a) a single clean mark is read back exactly
   (b) over 20 slots of 24 distinct marks: mean true recovered >= 12, and
       accepted non-members <= 5% of accepted
@@ -186,3 +186,16 @@ def test_read_all_rejects_out_of_range_cue_ring():
 def test_default_confidence_floor_is_in_the_measured_gap():
     """The floor must sit above the impostor band and below the true band."""
     assert 0.22 < DEFAULT_MIN_CONFIDENCE < 0.9
+
+
+def test_read_all_kernel_crowded_slot():
+    """BUS-PEEL-0: the kernel cued peel reads a 32-mark slot completely on the bus format (read_all: ~16 of 24)."""
+    import numpy as np
+    from omni_ring import DEFAULT_SPEC, generate_rotations
+    from omni_ring.chain import encode
+    from omni_ring.peel import read_all_kernel
+    rot = generate_rotations(DEFAULT_SPEC, seed=0); rng = np.random.default_rng(1)
+    xs = set(int(x) for x in rng.choice(DEFAULT_SPEC.data_capacity, 32, replace=False))
+    v = sum(encode(x, rot) for x in xs)
+    got = set(read_all_kernel(v, rot))
+    assert len(got & xs) >= 30 and len(got - xs) == 0

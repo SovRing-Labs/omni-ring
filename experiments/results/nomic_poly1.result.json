@@ -1,0 +1,32 @@
+{
+ "N": 6194,
+ "F": 1024,
+ "D": 5120,
+ "64": {
+  "exact": 0.999609375,
+  "exact_id": 0.999609375,
+  "coverage": 0.989453125,
+  "committed_precision": 1.0,
+  "ms_per_item": 6.621371726259895,
+  "polygon_bytes": 10240,
+  "raw_bytes": 262144
+ },
+ "128": {
+  "exact": 0.996484375,
+  "exact_id": 0.996484375,
+  "coverage": 0.978515625,
+  "committed_precision": 0.9996007984031936,
+  "ms_per_item": 3.9516307711096488,
+  "polygon_bytes": 10240,
+  "raw_bytes": 524288
+ },
+ "256": {
+  "exact": 0.97119140625,
+  "exact_id": 0.97119140625,
+  "coverage": 0.94453125,
+  "committed_precision": 0.9906947890818859,
+  "ms_per_item": 2.715766558691257,
+  "polygon_bytes": 10240,
+  "raw_bytes": 1048576
+ }
+}

@@ -1,0 +1,27 @@
+{
+ "8": {
+  "n": 200,
+  "baseline": 0.94,
+  "source": 0.975,
+  "switch": 0.265,
+  "p_one_sided": 0.04136873660177258
+ },
+ "12": {
+  "n": 200,
+  "baseline": 0.88,
+  "source": 0.915,
+  "switch": 0.25,
+  "p_one_sided": 0.12425930391038068
+ },
+ "16": {
+  "n": 200,
+  "baseline": 0.79,
+  "source": 0.835,
+  "switch": 0.27,
+  "p_one_sided": 0.12447105541651793
+ },
+ "verdict": {
+  "PASS": false,
+  "KILL": false
+ }
+}

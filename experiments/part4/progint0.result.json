@@ -1,0 +1,16 @@
+{
+ "PUBLIC": {
+  "random_accept": 8e-05,
+  "forgery": 1.0,
+  "tamper_caught": 1.0
+ },
+ "KEYED": {
+  "random_accept": 0.00016,
+  "forgery": 0.00012,
+  "tamper_caught": 1.0
+ },
+ "analytic_random": 8.090614886731392e-05,
+ "verdict": {
+  "PASS": true
+ }
+}

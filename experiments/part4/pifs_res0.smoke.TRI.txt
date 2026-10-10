@@ -1,0 +1,15 @@
+TRI    D   512 M       105: acc 1.000 seeds [1.0, 1.0] blocks 30 51 ms
+TRI    D   512 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 30 538 ms
+TRI    D   512 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 30 2928 ms
+TRI    D   512 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 30 7151 ms
+TRI    D   512 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 30 49124 ms
+TRI    D   512 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 30 151763 ms
+TRI    D 512: C 65,231 (field 42,667, ratio 1.529) seed spread 0.00
+TRI    D  1024 M       105: acc 1.000 seeds [1.0, 1.0] blocks 30 40 ms
+TRI    D  1024 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 30 713 ms
+TRI    D  1024 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 30 14725 ms
+TRI    D  1024 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 30 48067 ms
+TRI    D  1024 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 30 208384 ms
+TRI    D  1024 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 30 418619 ms
+TRI    D 1024: C 65,231 (field 157,191, ratio 0.415) seed spread 0.00
+PIFS-RES-0 {} 10792 s

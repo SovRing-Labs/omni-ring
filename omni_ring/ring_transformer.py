@@ -3,7 +3,8 @@ Ring-Attentive Transformer (Tier 3 Capstone).
 Replaces standard O(N) expanding KV-cache with constant-memory attention
 directed at the 20.48 KB Multi-Ring Memory Bank in /dev/shm.
 Linear projections run via AVX2 TernaryLinear (Tier 1),
-and semantic outputs are clamped by ResonatorAttractorClamp (Tier 2).
+Emission is a plain argmax here. The earlier ResonatorAttractorClamp hook (`clamp_action`) was never on the emission path
+and was removed 2026-09-30 (design review): the gate is the ring sift's margin + a spine proof (RING-ATTN-0 design).
 """
 from __future__ import annotations
 import time
@@ -14,7 +15,6 @@ from .types import DEFAULT_SPEC
 from .polymorphic import TernaryVector, PhaseVectorPacked, TERNARY_D, TERNARY_WORDS
 from .ring_bank import RingBank, RingSlotId, NUM_BANK_SLOTS
 from .ternary_layer import TernaryMatrix, TernaryLinear
-from .resonator_clamp import ResonatorAttractorClamp, ClampResult
 from .bridge import ActivationProjector
 from .query_bus import fractional_power_encoding
 
@@ -175,9 +175,6 @@ class RingTransformer:
         w_head = rng.choice([-1, 0, 1], size=(vocab_size, d_model), p=[0.25, 0.5, 0.25]).astype(np.int8)
         self.lm_head = TernaryLinear(d_model, vocab_size, weights=TernaryMatrix.from_dense(w_head))
 
-        # Semantic Attractor Clamp
-        self.clamp = ResonatorAttractorClamp(spec=DEFAULT_SPEC, seed=seed)
-        self.projector = ActivationProjector(input_dim=d_model, seed=seed)
 
     def forward(
         self,
@@ -221,17 +218,6 @@ class RingTransformer:
         logits, hidden = self.forward([token_id], bank, t=t_delta)
         next_token = int(np.argmax(logits))
         return next_token, hidden
-
-    def clamp_action(self, hidden_state: np.ndarray) -> ClampResult:
-        """
-        Route hidden state through Tier 2 Resonator Attractor Clamp.
-        This clamps to a verified discrete attractor when one exists; it is an
-        integrity check, not an accuracy guarantee. It cannot tell a correct
-        answer from a confidently wrong one, and the weights it runs on are
-        seeded pseudo-random, not trained. Abstain when no attractor verifies.
-        See reviews/2026-09-28 — OMNIRING-PEER-REVIEW-RETRIEVAL-AND-CONSOLIDATION.md §6.
-        """
-        return self.clamp.clamp_from_embedding(hidden_state, self.projector)
 
     def generate(
         self,

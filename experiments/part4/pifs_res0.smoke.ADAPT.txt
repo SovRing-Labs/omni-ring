@@ -1,0 +1,15 @@
+ADAPT  D   512 M       105: acc 1.000 seeds [1.0, 1.0] blocks 16 35 ms
+ADAPT  D   512 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 16 412 ms
+ADAPT  D   512 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 16 1471 ms
+ADAPT  D   512 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 16 4853 ms
+ADAPT  D   512 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 16 14050 ms
+ADAPT  D   512 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 16 72967 ms
+ADAPT  D 512: C 65,231 (field 42,667, ratio 1.529) seed spread 0.00
+ADAPT  D  1024 M       105: acc 1.000 seeds [1.0, 1.0] blocks 16 38 ms
+ADAPT  D  1024 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 16 398 ms
+ADAPT  D  1024 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 16 6202 ms
+ADAPT  D  1024 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 16 22110 ms
+ADAPT  D  1024 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 16 119889 ms
+ADAPT  D  1024 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 16 239119 ms
+ADAPT  D 1024: C 65,231 (field 157,191, ratio 0.415) seed spread 0.00
+PIFS-RES-0 {} 5679 s

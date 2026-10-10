@@ -1,0 +1,19 @@
+{
+ "hours": 1.0,
+ "hz": 50.0,
+ "events": 3304,
+ "idle_ticks": 175725,
+ "labels": 6,
+ "refused": 0,
+ "abstains": 0,
+ "commits": 3304,
+ "idle_ms_p50": 0.3838539123535156,
+ "idle_ms_p99": 1.3920688629150413,
+ "busy_ms_p50": 0.508427619934082,
+ "verdict": {
+  "PASS": true,
+  "no_refused": true,
+  "idle_tick_le_1ms": true,
+  "saw_events": true
+ }
+}

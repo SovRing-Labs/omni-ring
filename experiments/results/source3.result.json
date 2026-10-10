@@ -1,0 +1,37 @@
+{
+ "8": {
+  "recall": 0.975,
+  "switch": 0.985,
+  "source0_recall": 0.975,
+  "source0_switch": 0.265
+ },
+ "12": {
+  "recall": 0.915,
+  "switch": 0.935,
+  "source0_recall": 0.915,
+  "source0_switch": 0.25
+ },
+ "16": {
+  "recall": 0.83,
+  "switch": 0.83,
+  "source0_recall": 0.835,
+  "source0_switch": 0.27
+ },
+ "live_rewrite": 1.0,
+ "safety": {
+  "clean_accepted": 1.0,
+  "tampered_refused": 1.0,
+  "random_refused": 1.0
+ },
+ "timing": {
+  "ticks_per_s": 544.1976959109898,
+  "program_decode_ms": 0.41529781999997795,
+  "tick_ms": 1.837567500770092
+ },
+ "verdict": {
+  "T1": true,
+  "T2": true,
+  "T3": true,
+  "T4": true
+ }
+}

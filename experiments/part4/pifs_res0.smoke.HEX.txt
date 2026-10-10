@@ -1,0 +1,15 @@
+HEX    D   512 M       105: acc 1.000 seeds [1.0, 1.0] blocks 56 76 ms
+HEX    D   512 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 56 1346 ms
+HEX    D   512 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 56 4423 ms
+HEX    D   512 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 56 17687 ms
+HEX    D   512 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 56 95673 ms
+HEX    D   512 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 56 337901 ms
+HEX    D 512: C 65,231 (field 42,667, ratio 1.529) seed spread 0.00
+HEX    D  1024 M       105: acc 1.000 seeds [1.0, 1.0] blocks 45 28 ms
+HEX    D  1024 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 45 633 ms
+HEX    D  1024 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 45 34767 ms
+HEX    D  1024 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 45 108063 ms
+HEX    D  1024 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 45 299597 ms
+HEX    D  1024 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 45 155985 ms
+HEX    D 1024: C 65,231 (field 157,191, ratio 0.415) seed spread 0.00
+PIFS-RES-0 {} 12650 s

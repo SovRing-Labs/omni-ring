@@ -98,27 +98,6 @@ def test_ring_transformer_generation(test_bank):
         assert 0 <= tok < vocab_size
 
 
-def test_ring_transformer_attractor_clamp(test_bank):
-    """Verify that neural cortex hidden representations clamp to verified attractors."""
-    model = RingTransformer(
-        vocab_size=100,
-        d_model=128,
-        d_ffn=256,
-        n_layers=1,
-        seed=303
-    )
-    # Register discrete semantic action in the clamp head
-    model.clamp.register_symbol("EXECUTE_WINDUP", 42)
-
-    # Clean target vector for coordinate 42
-    target_pv = model.clamp.get_symbol_vector("EXECUTE_WINDUP")
-    clamp_res = model.clamp.clamp(target_pv)
-
-    assert clamp_res.clamped is True
-    assert clamp_res.coordinate == 42
-    assert clamp_res.symbol == "EXECUTE_WINDUP"
-
-
 def test_down_projection_matrix_uses_full_slot():
     """D2: the down-projection spans the whole 10,240-D bus, not just [:d_model]."""
     d_model = 128

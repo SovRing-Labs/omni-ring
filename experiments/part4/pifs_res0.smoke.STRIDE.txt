@@ -1,0 +1,15 @@
+STRIDE D   512 M       105: acc 1.000 seeds [1.0, 1.0] blocks 32 50 ms
+STRIDE D   512 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 32 754 ms
+STRIDE D   512 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 32 2774 ms
+STRIDE D   512 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 32 8325 ms
+STRIDE D   512 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 32 50315 ms
+STRIDE D   512 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 32 159471 ms
+STRIDE D 512: C 65,231 (field 42,667, ratio 1.529) seed spread 0.00
+STRIDE D  1024 M       105: acc 1.000 seeds [1.0, 1.0] blocks 32 75 ms
+STRIDE D  1024 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 32 777 ms
+STRIDE D  1024 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 32 11170 ms
+STRIDE D  1024 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 32 57784 ms
+STRIDE D  1024 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 32 218888 ms
+STRIDE D  1024 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 32 422544 ms
+STRIDE D 1024: C 65,231 (field 157,191, ratio 0.415) seed spread 0.00
+PIFS-RES-0 {} 11214 s

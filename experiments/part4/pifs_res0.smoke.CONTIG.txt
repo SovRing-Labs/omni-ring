@@ -1,0 +1,15 @@
+CONTIG D   512 M       105: acc 1.000 seeds [1.0, 1.0] blocks 32 49 ms
+CONTIG D   512 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 32 352 ms
+CONTIG D   512 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 32 2496 ms
+CONTIG D   512 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 32 8206 ms
+CONTIG D   512 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 32 48153 ms
+CONTIG D   512 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 32 154002 ms
+CONTIG D 512: C 65,231 (field 42,667, ratio 1.529) seed spread 0.00
+CONTIG D  1024 M       105: acc 1.000 seeds [1.0, 1.0] blocks 32 20 ms
+CONTIG D  1024 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 32 703 ms
+CONTIG D  1024 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 32 10817 ms
+CONTIG D  1024 M    12,673: acc 1.000 seeds [1.0, 1.0] blocks 32 48692 ms
+CONTIG D  1024 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 32 216256 ms
+CONTIG D  1024 M    65,231: acc 1.000 seeds [1.0, 1.0] blocks 32 419564 ms
+CONTIG D 1024: C 65,231 (field 157,191, ratio 0.415) seed spread 0.00
+PIFS-RES-0 {} 11014 s

@@ -1,0 +1,20 @@
+{
+ "CF-0": {
+  "alive_after_10k": true,
+  "drift_cells_per_10k": 0.26969953317207157,
+  "regen_centre_err": 0.10729783779750514,
+  "peak_over_mean": 15.263388935151802,
+  "PASS": true
+ },
+ "CF-1": {
+  "read_exact": 1.0,
+  "corruption_flagged": 1.0,
+  "PASS": true
+ },
+ "CF-2": {
+  "move_within_2": 0.06,
+  "hold_frac": 1.0,
+  "release_ticks": null,
+  "PASS": false
+ }
+}

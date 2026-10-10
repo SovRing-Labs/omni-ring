@@ -1,0 +1,17 @@
+{
+ "24": {
+  "true_per_slot": 15.5,
+  "fakes_per_slot": 0.0,
+  "ms": 52.26325988769531
+ },
+ "32": {
+  "true_per_slot": 5.6,
+  "fakes_per_slot": 0.0,
+  "ms": 22.081375122070312
+ },
+ "48": {
+  "true_per_slot": 2.3,
+  "fakes_per_slot": 0.0,
+  "ms": 17.51708984375
+ }
+}

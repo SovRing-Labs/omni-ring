@@ -1,0 +1,15 @@
+NONE   D   512 M       105: acc 1.000 seeds [1.0, 1.0] blocks 0 1 ms
+NONE   D   512 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 0 1 ms
+NONE   D   512 M     4,199: acc 1.000 seeds [1.0, 1.0] blocks 0 1 ms
+NONE   D   512 M    12,673: acc 0.500 seeds [1.0, 0.0] blocks 0 30 ms
+NONE   D   512 M    33,263: acc 1.000 seeds [1.0, 1.0] blocks 0 12 ms
+NONE   D   512 M    65,231: acc 0.917 seeds [1.0, 0.8333333333333334] blocks 0 22 ms
+NONE   D 512: C 33,263 (field 42,667, ratio 0.780) seed spread 0.19
+NONE   D  1024 M       105: acc 1.000 seeds [1.0, 1.0] blocks 0 4 ms
+NONE   D  1024 M     1,001: acc 1.000 seeds [1.0, 1.0] blocks 0 5 ms
+NONE   D  1024 M     4,199: acc 0.833 seeds [0.6666666666666666, 1.0] blocks 0 14 ms
+NONE   D  1024 M    12,673: acc 0.583 seeds [0.16666666666666666, 1.0] blocks 0 19 ms
+NONE   D  1024 M    33,263: acc 0.500 seeds [0.5, 0.5] blocks 0 14 ms
+NONE   D  1024 M    65,231: acc 0.667 seeds [0.8333333333333334, 0.5] blocks 0 8 ms
+NONE   D 1024: C 1,001 (field 157,191, ratio 0.006) seed spread 0.25
+PIFS-RES-0 {'512': {'best_arm': None, 'best_C': None, 'none_C': 33263, 'geom_ge_contig': True}, '1024': {'best_arm': None, 'best_C': None, 'none_C': 1001, 'geom_ge_contig': True}} 3 s

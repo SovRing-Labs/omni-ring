@@ -1,0 +1,27 @@
+{
+ "a_spawn_python": {
+  "median_us": 32322.33799644746,
+  "p99_us": 57688.57302609831,
+  "n": 200
+ },
+ "b_socket_resident_python": {
+  "median_us": 9.549024980515242,
+  "p99_us": 17.304031644016504,
+  "n": 10000
+ },
+ "c_shm_ring_c_worker": {
+  "median_us": 0.8919741958379745,
+  "p99_us": 1.2059463188052177,
+  "n": 10000
+ },
+ "today_fleet_exec_subprocess": {
+  "median_us": 169696.32299151272,
+  "p99_us": 206374.61496517062,
+  "n": 20
+ },
+ "verdict": {
+  "PASS": true,
+  "spawn_over_shm": 36236.85320412425,
+  "fleet_exec_over_shm": 190248.01814147743
+ }
+}

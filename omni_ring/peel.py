@@ -7,7 +7,7 @@ the marks; repeated sweeps over the residual recover far more, because each
 accepted mark is subtracted (explaining away) so the next sweep sees a cleaner
 slot.
 
-Provenance: `_Reviews/RING/RING3-RESULTS.md` -> "## PEEL: PASS".
+Provenance: `omniring-research docs/06-ring3-peel-diamond-correl-tabu-fret.md` -> "## PEEL: PASS".
 Pre-registered: two 13-ring clamp sweeps WITH explaining-away recover >= 1.25x
 the true marks of one plain sweep, with accepted fakes Wilson-99% upper bound
 <= 0.05. Measured there at M=24: 14.77 vs 8.45 true marks/slot, fakes 82/2298
@@ -32,6 +32,7 @@ import numpy as np
 from .chain import encode
 from .check import ResidueDesyncError, check_anomaly
 from .resonator import decode_soft
+from .crt import solve_crt
 from .types import DEFAULT_SPEC, PhaseVector, RingSpec
 
 __all__ = [
@@ -61,7 +62,7 @@ NULL_MAGNITUDE_TOL = 1e-9
 # false settle produced, far below anything a true settle produced.
 #
 # Consequence: fakes fall to 0.0% at M=24 while recall *rises* (measured sweep,
-# 8 slots/arm -- see _Reviews/RING/OPEEL-READ.md "Measured").
+# 8 slots/arm -- see omniring-research docs/07-peel-read-all-module.md "Measured").
 DEFAULT_MIN_CONFIDENCE = 0.5
 
 
@@ -180,7 +181,7 @@ def read_all(
     iteration's ReLU-plus-normalise path settles to residue 0 on every ring for a
     null input, which CRT-resolves to coordinate 0 -- a 17-*legal* coordinate.
     Reading it would report a mark that is not in the slot. See OPEN ISSUES in
-    `_Reviews/RING/OPEEL-READ.md`.
+    `omniring-research docs/07-peel-read-all-module.md`.
 
     Args:
         v: Complex phase vector of shape (D,) holding the superposition.
@@ -221,3 +222,40 @@ def read_all(
             residual = residual - encode(x, rotations)
 
     return accepted
+
+
+def read_all_kernel(v: PhaseVector, rotations: List[np.ndarray], spec: RingSpec = DEFAULT_SPEC, cue_ring: int = 3,
+                    blk_len: int = 1024, min_proj: float = 0.5, max_marks: int = 128) -> List[int]:
+    """BUS-PEEL-0 (2026-10-02): cued explaining-away on the AVX2 kernel. Cue one ring (default the 13-ring, as read_all), joint-
+    search the other four rings on a `blk_len`-dim block of the residual via a 16-phase product lattice (built once), accept
+    the best candidate if it is 17-legal and still explains >= min_proj of a unit mark, subtract its exact codeword, repeat.
+    Measured on the bus format (D 5,120): 24/24 · 32/32 · 48/48 · 64/64 true marks per slot, 0 fakes, 0.2-0.4 s (read_all: 16.65/24)."""
+    from . import route as _route
+    mods = spec.all_moduli; D = spec.dimension; N = spec.data_capacity
+    cbs = build_codebooks(rotations, spec)
+    J = [i for i in range(len(mods)) if i != cue_ring]
+    blk = np.arange(min(blk_len, D))
+    lat, g = _route._block_lattice([cbs[i] for i in J], tuple(mods[i] for i in J), blk)
+    cbc = np.conj(cbs[cue_ring][:, blk])
+    resid = np.asarray(v, dtype=complex).copy(); found: List[int] = []
+    for _ in range(max_marks):
+        U = resid[blk][None, :] * cbc
+        s = 127.0 / np.maximum(np.abs(U).max(1, keepdims=True), 1e-9)
+        qr = np.rint(U.real * s).astype(np.int8); qi = np.rint(U.imag * s).astype(np.int8)
+        best = None
+        for c in range(mods[cue_ring]):
+            sc = _route._sift_cplx_int8(qr[c], qi[c], lat); top = int(np.argmax(sc))
+            if best is None or sc[top] > best[1]:
+                res = [0] * len(mods)
+                for k, i in enumerate(J):
+                    res[i] = int(g[top, k])
+                res[cue_ring] = c; best = (res, int(sc[top]))
+        res = best[0]; x = solve_crt(res, mods)
+        w = np.ones(D, dtype=complex)
+        for i, r in enumerate(res):
+            w *= cbs[i][r]
+        proj = float((np.vdot(w, resid)).real / D)
+        if proj < min_proj or x >= N or x in found:
+            break
+        found.append(x); resid = resid - w
+    return found

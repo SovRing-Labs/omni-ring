@@ -1,0 +1,62 @@
+{
+ "SEQ": {
+  "throughput_slots_per_s": 15.513042147431197,
+  "mean_latency_s": 0.06446188893811457,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 7.477579116821289
+ },
+ "TRI": {
+  "throughput_slots_per_s": 20.134273552167706,
+  "mean_latency_s": 3.227420882932071,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 5.761320352554321
+ },
+ "TRI-PEELx2": {
+  "throughput_slots_per_s": 26.90804325181103,
+  "mean_latency_s": 2.258989681457651,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 4.310978651046753
+ },
+ "TRI-PEELx3": {
+  "throughput_slots_per_s": 25.231991853395133,
+  "mean_latency_s": 2.295491646076071,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 4.5973381996154785
+ },
+ "TRI-PARTx2-PEELx3": {
+  "throughput_slots_per_s": 26.276473922366712,
+  "mean_latency_s": 2.380471657062399,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 4.414595365524292
+ },
+ "verdict": {
+  "best_shape": "TRI-PEELx2",
+  "speedup": 1.7345432956402256,
+  "PASS": false
+ }
+}

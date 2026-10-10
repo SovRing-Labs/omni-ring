@@ -5,8 +5,23 @@ from typing import List, Optional
 import numpy as np
 from .types import RingSpec, DEFAULT_SPEC, PhaseVector
 
+# The one default seed every codebook generator uses.
+#
+# Unguided decode of the rotation rings is a seed lottery at D = 5,120: seeds
+# 0/1/2 recover a clean single mark 15/15, while seeds 3/21/42 recover 1/15.
+# The old default was 42 -- the worst case in the measured set -- so any caller
+# that omitted `seed=` silently drew a codebook whose unguided decode was 15x
+# worse than its neighbour's, with nothing in the call site to say so. All
+# decode paths are cued today (the cue is mandatory; see peel.py), so this was
+# latent rather than an active outage -- but it is a trap that arms itself the
+# moment anyone adds an unguided path.
+#
+# SAFE_SEED is the measured-good draw. tests/test_codebook.py guards it: that
+# test fails if anyone points this at a losing seed.
+SAFE_SEED = 0
 
-def generate_rotations(spec: RingSpec = DEFAULT_SPEC, seed: Optional[int] = 42) -> List[np.ndarray]:
+
+def generate_rotations(spec: RingSpec = DEFAULT_SPEC, seed: Optional[int] = SAFE_SEED) -> List[np.ndarray]:
     """
     Generate the base rotation vectors for each ring.
     For each modulus m, r_m has entries from {0, ..., m-1} * (2*pi / m).
@@ -43,7 +58,7 @@ def generate_quantized_codebook(
     size: int,
     dimension: int = DEFAULT_SPEC.dimension,
     k_quantization: int = DEFAULT_SPEC.k_quantization,
-    seed: Optional[int] = 42
+    seed: Optional[int] = SAFE_SEED
 ) -> PhaseVector:
     """
     Generate an array of K-quantized random complex phase vectors on the unit circle.
@@ -55,7 +70,7 @@ def generate_quantized_codebook(
     return np.exp(1j * phases)
 
 
-def generate_direct_codebooks(spec: RingSpec = DEFAULT_SPEC, seed: Optional[int] = 42) -> List[np.ndarray]:
+def generate_direct_codebooks(spec: RingSpec = DEFAULT_SPEC, seed: Optional[int] = SAFE_SEED) -> List[np.ndarray]:
     """
     Generate independent K-quantized random codebooks for direct probing.
     
@@ -69,7 +84,7 @@ def generate_direct_codebooks(spec: RingSpec = DEFAULT_SPEC, seed: Optional[int]
     ]
 
 
-def verify_unguided(spec: RingSpec = DEFAULT_SPEC, seed: Optional[int] = 42, samples: int = 15,
+def verify_unguided(spec: RingSpec = DEFAULT_SPEC, seed: Optional[int] = SAFE_SEED, samples: int = 15,
                     iterations: int = 30) -> float:
     """Fraction of clean single marks that decode_soft recovers with NO cue for this codebook seed.
 

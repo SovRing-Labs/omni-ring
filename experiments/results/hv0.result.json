@@ -1,0 +1,21 @@
+{
+ "n_steps": 24495,
+ "n_distinct": 4506,
+ "n_tested": 4506,
+ "tool_acc": 1.0,
+ "head_acc": 1.0,
+ "arg_acc": 1.0,
+ "identical_same_frame": true,
+ "collisions": 0,
+ "encode_ms": 0.9815408513008849,
+ "decode_us_per_field": 1459.2890701287902,
+ "near_dup_sim": 0.5510761655170884,
+ "diff_tool_sim": 0.01910616305365981,
+ "frame_bytes": 2560,
+ "codebooks": {
+  "tool": 57,
+  "head": 320,
+  "arg": 3202
+ },
+ "PASS": true
+}

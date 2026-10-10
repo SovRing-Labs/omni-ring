@@ -8,7 +8,12 @@ from typing import List, Optional, Tuple, Dict, Any, Union
 import numpy as np
 
 from .types import RingSpec, DEFAULT_SPEC, ResonatorResult
-from .codebook import generate_rotations, generate_codebooks, generate_direct_codebooks
+from .codebook import (
+    SAFE_SEED,
+    generate_rotations,
+    generate_codebooks,
+    generate_direct_codebooks,
+)
 from .chain import encode, bind, unbind
 from .resonator import decode_soft
 from .crt import solve_crt, direct_probe
@@ -42,7 +47,7 @@ class GatedMemoryEngine:
        available when no verified attractor exists.
        See reviews/2026-09-28 — OMNIRING-PEER-REVIEW-RETRIEVAL-AND-CONSOLIDATION.md §6.
     """
-    def __init__(self, spec: RingSpec = DEFAULT_SPEC, seed: int = 42):
+    def __init__(self, spec: RingSpec = DEFAULT_SPEC, seed: int = SAFE_SEED):
         self.spec = spec
         # Direct probe codebooks (K-quantized, 45 total vectors)
         self.direct_codebooks = generate_direct_codebooks(spec, seed=seed)

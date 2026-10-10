@@ -1,0 +1,13 @@
+{
+ "notes": 97385,
+ "distinct": 86,
+ "exact_dup": 0.9991169071212199,
+ "near_dup": 0.0006161113107768137,
+ "near_pairs_checked": 60,
+ "near_label_agree": 0.95,
+ "avoidable": 0.9991169071212199,
+ "avoidable_if_near_accepted_at_measured_agreement": 0.9997330184319967,
+ "verdict": {
+  "PASS": true
+ }
+}

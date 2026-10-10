@@ -1,0 +1,30 @@
+{
+ "int64": {
+  "bit_identical_bind": true,
+  "bit_identical_unbind": true,
+  "ns_per_phase": 10.809465701458976
+ },
+ "uint8": {
+  "bit_identical_bind": true,
+  "bit_identical_unbind": true,
+  "ns_per_phase": 0.28665499994531274
+ },
+ "swar_u64": {
+  "bit_identical_bind": true,
+  "bit_identical_unbind": true,
+  "ns_per_phase": 0.6310484022833407
+ },
+ "c_packed": {
+  "bit_identical_bind": true,
+  "bit_identical_unbind": true,
+  "ns_per_phase": 0.09943710174411535
+ },
+ "speedups": {
+  "swar_vs_uint8": 0.4542520017610387,
+  "swar_vs_int64": 17.129376545993576,
+  "c_vs_swar": 6.34620670971724
+ },
+ "verdict": {
+  "PASS": false
+ }
+}

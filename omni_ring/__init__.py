@@ -10,6 +10,10 @@ import os
 os.environ.setdefault("OPENBLAS_NUM_THREADS", "1")
 os.environ.setdefault("MKL_NUM_THREADS", "1")
 os.environ.setdefault("OMP_NUM_THREADS", "1")
+# 2026-09-30: large batched work (loop.Loop) opens the throttle for its own run only (loop.throttle). Idle OpenMP threads
+# must SLEEP between bursts: with the default active spin-wait, a finished 8-thread burst kept 7 threads spinning and slowed
+# the next small scan 4-7x (test_ring_bank budget); passive wait costs nothing measurable on the big sift (0.280 vs 0.291 s).
+os.environ.setdefault("OMP_WAIT_POLICY", "PASSIVE")
 
 try:
     from threadpoolctl import threadpool_limits

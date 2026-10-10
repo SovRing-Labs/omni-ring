@@ -1,0 +1,32 @@
+{
+ "whitened/64": {
+  "exact": 1.0,
+  "coverage": 0.98984375,
+  "committed_precision": 1.0
+ },
+ "whitened/128": {
+  "exact": 0.996875,
+  "coverage": 0.976953125,
+  "committed_precision": 1.0
+ },
+ "whitened/256": {
+  "exact": 0.97578125,
+  "coverage": 0.9501953125,
+  "committed_precision": 0.991983556012333
+ },
+ "random_id_atoms/64": {
+  "exact": 1.0,
+  "coverage": 1.0,
+  "committed_precision": 1.0
+ },
+ "random_id_atoms/128": {
+  "exact": 1.0,
+  "coverage": 1.0,
+  "committed_precision": 1.0
+ },
+ "random_id_atoms/256": {
+  "exact": 0.994140625,
+  "coverage": 0.9912109375,
+  "committed_precision": 0.9964532019704434
+ }
+}

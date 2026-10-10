@@ -1,0 +1,47 @@
+{
+ "4": {
+  "sigma_star": 0.5500000000000002,
+  "gram_min_angle_deg": {
+   "SQUARE": 90.0,
+   "TETRA": 109.47122063449068,
+   "RANDOM": 87.53988664909397
+  },
+  "SQUARE": 0.8111166666666666,
+  "TETRA": 0.8434666666666667,
+  "RANDOM": 0.7877666666666667
+ },
+ "6": {
+  "sigma_star": 0.4700000000000001,
+  "gram_min_angle_deg": {
+   "HEXAGON": 59.999999999999986,
+   "OCTA": 90.0,
+   "SIMPLEX6": 101.53695903281547,
+   "RANDOM": 82.29055330158681
+  },
+  "HEXAGON": 0.7155999999999999,
+  "OCTA": 0.80565,
+  "SIMPLEX6": 0.8375666666666666,
+  "RANDOM": 0.7867333333333333
+ },
+ "8": {
+  "sigma_star": 0.43000000000000005,
+  "gram_min_angle_deg": {
+   "OCTAGON": 44.99999999999994,
+   "CUBE": 70.52877936550931,
+   "SIMPLEX8": 98.21321070173818,
+   "RANDOM": 81.74064745905672
+  },
+  "OCTAGON": 0.6278333333333334,
+  "CUBE": 0.75215,
+  "SIMPLEX8": 0.8320666666666666,
+  "RANDOM": 0.7944833333333333
+ },
+ "verdict": {
+  "tetra_ge_square": true,
+  "octa_ge_hexagon": true,
+  "cube_ge_octagon": true,
+  "simplex8_ge_cube": true,
+  "simplex6_ge_octa": true,
+  "PASS_J_theory": true
+ }
+}

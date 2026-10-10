@@ -1,0 +1,17 @@
+{
+ "compile_ms": 26.053667068481445,
+ "mismatches": 0,
+ "of": 82,
+ "ms_jit": 31.164860725402832,
+ "ms_avx2": 4.296979904174805,
+ "ms_numpy": 506.4168930053711,
+ "ratio_jit_over_avx2": 7.25273597279896,
+ "vm_on_jit_ok": 16,
+ "kernel_hash": "2e20634c215c38df",
+ "verdict": {
+  "PASS": true,
+  "bitexact": true,
+  "compile_le_50ms": true,
+  "speed_within_1.5x": false
+ }
+}

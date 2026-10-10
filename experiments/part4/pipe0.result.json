@@ -1,0 +1,51 @@
+{
+ "SEQ": {
+  "throughput_slots_per_s": 15.238348756074803,
+  "mean_latency_s": 0.06562390820733432,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 7.612373352050781
+ },
+ "TRI": {
+  "throughput_slots_per_s": 20.750041923217136,
+  "mean_latency_s": 2.9542288081399324,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 5.590350151062012
+ },
+ "SQUARE": {
+  "throughput_slots_per_s": 9.981396793290385,
+  "mean_latency_s": 6.265872182517216,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 1.0
+  },
+  "seconds": 11.621619939804077
+ },
+ "HEX": {
+  "throughput_slots_per_s": 18.371908420652012,
+  "mean_latency_s": 3.257721644023369,
+  "acc": {
+   "CLEAN": 1.0,
+   "NOISY": 1.0,
+   "QUANT": 1.0,
+   "SUPER": 0.9655172413793104
+  },
+  "seconds": 6.313987493515015
+ },
+ "verdict": {
+  "best_shape": "TRI",
+  "speedup": 1.3616988464675401,
+  "PASS": false
+ }
+}

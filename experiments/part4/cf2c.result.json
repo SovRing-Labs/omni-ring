@@ -1,0 +1,413 @@
+{
+ "grid": [
+  {
+   "push": 0.6,
+   "tau": 0.05,
+   "w_in": 1.5,
+   "move": 0.1,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.05,
+   "w_in": 2.5,
+   "move": 0.05,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.05,
+   "w_in": 4.0,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.1,
+   "w_in": 1.5,
+   "move": 0.1,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.1,
+   "w_in": 2.5,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.1,
+   "w_in": 4.0,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.2,
+   "w_in": 1.5,
+   "move": 0.05,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.2,
+   "w_in": 2.5,
+   "move": 0.1,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 0.6,
+   "tau": 0.2,
+   "w_in": 4.0,
+   "move": 0.4,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.05,
+   "w_in": 1.5,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.05,
+   "w_in": 2.5,
+   "move": 0.1,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.05,
+   "w_in": 4.0,
+   "move": 0.4,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.1,
+   "w_in": 1.5,
+   "move": 0.2,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.1,
+   "w_in": 2.5,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.1,
+   "w_in": 4.0,
+   "move": 0.2,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.2,
+   "w_in": 1.5,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.2,
+   "w_in": 2.5,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": 189,
+   "pass": false
+  },
+  {
+   "push": 1.0,
+   "tau": 0.2,
+   "w_in": 4.0,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": 113,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.05,
+   "w_in": 1.5,
+   "move": 0.2,
+   "hold": 0.38666666666666666,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.05,
+   "w_in": 2.5,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.05,
+   "w_in": 4.0,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.1,
+   "w_in": 1.5,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.1,
+   "w_in": 2.5,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.1,
+   "w_in": 4.0,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": 111,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.2,
+   "w_in": 1.5,
+   "move": 0.05,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.2,
+   "w_in": 2.5,
+   "move": 0.35,
+   "hold": 1.0,
+   "release": 109,
+   "pass": false
+  },
+  {
+   "push": 1.5,
+   "tau": 0.2,
+   "w_in": 4.0,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": 57,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.05,
+   "w_in": 1.5,
+   "move": 0.05,
+   "hold": 0.11666666666666667,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.05,
+   "w_in": 2.5,
+   "move": 0.1,
+   "hold": 0.31666666666666665,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.05,
+   "w_in": 4.0,
+   "move": 0.2,
+   "hold": 1.0,
+   "release": 169,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.1,
+   "w_in": 1.5,
+   "move": 0.3,
+   "hold": 0.11666666666666667,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.1,
+   "w_in": 2.5,
+   "move": 0.25,
+   "hold": 1.0,
+   "release": 170,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.1,
+   "w_in": 4.0,
+   "move": 0.2,
+   "hold": 1.0,
+   "release": 85,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.2,
+   "w_in": 1.5,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.2,
+   "w_in": 2.5,
+   "move": 0.2,
+   "hold": 1.0,
+   "release": 86,
+   "pass": false
+  },
+  {
+   "push": 2.0,
+   "tau": 0.2,
+   "w_in": 4.0,
+   "move": 0.15,
+   "hold": 1.0,
+   "release": 43,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.05,
+   "w_in": 1.5,
+   "move": 0.05,
+   "hold": 0.04666666666666667,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.05,
+   "w_in": 2.5,
+   "move": 0.25,
+   "hold": 0.06666666666666667,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.05,
+   "w_in": 4.0,
+   "move": 0.25,
+   "hold": 0.12333333333333334,
+   "release": 102,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.1,
+   "w_in": 1.5,
+   "move": 0.15,
+   "hold": 0.03666666666666667,
+   "release": null,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.1,
+   "w_in": 2.5,
+   "move": 0.15,
+   "hold": 0.05,
+   "release": 102,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.1,
+   "w_in": 4.0,
+   "move": 0.2,
+   "hold": 0.08333333333333333,
+   "release": 51,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.2,
+   "w_in": 1.5,
+   "move": 0.15,
+   "hold": 0.03666666666666667,
+   "release": 150,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.2,
+   "w_in": 2.5,
+   "move": 0.2,
+   "hold": 0.04,
+   "release": 51,
+   "pass": false
+  },
+  {
+   "push": 3.0,
+   "tau": 0.2,
+   "w_in": 4.0,
+   "move": 0.15,
+   "hold": 0.056666666666666664,
+   "release": 26,
+   "pass": false
+  }
+ ],
+ "best": null,
+ "verdict": {
+  "PASS": false
+ }
+}

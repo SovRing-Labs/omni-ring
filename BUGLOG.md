@@ -1,3 +1,9 @@
+---
+title: OMNIRING Research Buglog & Evolutionary Feature Register
+updated: 2026-09-28
+weaver_hash: 858a3ea877601db6826a039a393d4d3b401e8c7ec82f302c06427621c9561361
+weaver_imported: 2026-10-09T22:22:08+00:00
+---
 # OMNIRING Research Buglog & Evolutionary Feature Register
 
 **Pillar:** The Nervous System (Cognitive Core of the Sovereign Neural OS)  
