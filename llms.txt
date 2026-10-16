@@ -1,0 +1,20 @@
+# omni-ring
+
+> `omni-ring` is a production-grade, zero-external-dependency (NumPy + standard library + AVX2 C-kernel) implementation of the OMNIRING Coprime Resonator Hyperdimensional Engine and the Two-Faced Polymorphic Bus with shared-memory (`/dev/shm`) IPC.
+
+Setup: `git clone --depth 1 https://github.com/SovRing-Labs/omni-ring && cd omni-ring && python3 -m venv .venv && . .venv/bin/activate && python -m pip install -q numpy pytest && ./build_kernel.sh && python3 -m pytest -q` (expect: passed).
+Licence: PolyForm Small Business 1.0.0 OR PolyForm Noncommercial 1.0.0 (free trial for evaluation).
+
+## Docs
+- [README.md](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/README.md)
+- [DOSSIER.md](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/DOSSIER.md)
+- [TECHNICAL-DISCLOSURE.md](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/TECHNICAL-DISCLOSURE.md)
+- [PROVENANCE.md](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/PROVENANCE.md)
+- [LICENSING.md](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/LICENSING.md)
+- [CITATION.cff](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/CITATION.cff)
+- [AGENTS.md](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/AGENTS.md)
+- [STATUS.md](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/STATUS.md)
+- [suite.json](https://raw.githubusercontent.com/SovRing-Labs/omni-ring/main/suite.json)
+
+## Optional
+- [SovRing umbrella (all repos, MCP setup)](https://github.com/SovRing-Labs/SovRing)
