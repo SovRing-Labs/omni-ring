@@ -1,5 +1,11 @@
 # OMNIRING — Coprime Resonator Hyperdimensional Engine
 
+<!-- status-badges (REPO-ACCESS-C) -->
+[![status: pre-alpha (under development)](https://img.shields.io/badge/status-pre--alpha%20%28under%20development%29-orange)](STATUS.md) **Status: pre-alpha, under development** — what works today, what is untested and what failed: [`STATUS.md`](STATUS.md)
+
+[![defensive publication: DOI 10.5281/zenodo.23282029](https://img.shields.io/badge/defensive%20publication-DOI%2010.5281%2Fzenodo.23282029-blue)](https://doi.org/10.5281/zenodo.23282029) **Defensive publication:** [`TECHNICAL-DISCLOSURE.md`](TECHNICAL-DISCLOSURE.md) · DOI [10.5281/zenodo.23282029](https://doi.org/10.5281/zenodo.23282029)
+<!-- /status-badges -->
+
 > *"We are resonators; everything we build then becomes another resonator to build off from. Develop us well."*
 
 `omni-ring` is a production-grade, zero-external-dependency (NumPy + standard library + AVX2 C-kernel) implementation of the **OMNIRING Coprime Resonator Hyperdimensional Engine** and the **Two-Faced Polymorphic Bus** with shared-memory (`/dev/shm`) IPC.

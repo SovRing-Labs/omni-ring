@@ -1,0 +1,346 @@
+{
+  "_about": {
+    "repo": "omni-ring",
+    "url": "https://github.com/SovRing-Labs/omni-ring",
+    "one_line": "Residue hyperdimensional computing engine: coprime-ring (CRT) memory with a check ring, resonator decode, two-faced ternary/phase hypervector slot, AVX2 C kernel, shards and a shared-memory bus.",
+    "quicktest": "./build_kernel.sh && python3 -m pytest -q tests/test_gates.py tests/test_crt.py tests/test_seed.py",
+    "quicktest_s": 60,
+    "licence": "PolyForm Small Business 1.0.0 / PolyForm Noncommercial 1.0.0 (LICENSING.md); PolyForm Free Trial for evaluation",
+    "status_file": "STATUS.md",
+    "generated": "2026-10-16",
+    "schema": 1,
+    "source": "README.md 'Verification & Benchmarks', DOSSIER.md, tests/ (37 files + golden/), experiments/results; verified by running every non-external row on 2026-10-16 (full suite with the kernel built in a temp copy: 190 passed, 3 skipped, 2 failed = O2 timing under load and O12)"
+  },
+  "tests": [
+    {
+      "id": "O1",
+      "title": "The five numerical acceptance gates (separation, cycle, resonator, clamped recall, check ring)",
+      "claim": "Separation max cross-correlation 0.0383 (< 0.04, N=1,000); cycle repeats at t=1,365 (4 rings) and t=23,205 (5 rings); resonator 105/105 clean 3-5-7 convergence; clamped recall 68% vs 12% unguided at 12 marks; check ring 0 / 54,600 single-ring corruptions missed",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_gates.py --deselect tests/test_gates.py::test_gate_6_latency 2>&1 | tail -1 | grep -E \"^5 passed\"'",
+      "expect": "5 passed",
+      "evidence": [
+        "README.md",
+        "tests/test_gates.py"
+      ],
+      "runtime_s": 60,
+      "what_it_means": "Five tests rebuild the engine's core guarantees from scratch and assert the pre-set bars from the README: 1,000 random codewords stay nearly orthogonal (largest cross-correlation under 0.04); stepping the clock one tick equals encoding the next number, and the sequence only repeats after 3x5x7x13 = 1,365 steps (23,205 with a fifth ring); the resonator decodes all 105 clean 3-5-7 combinations; with the marks 'clamped' it recalls at least 60% of a crowded slot where unguided recall is at most 20%; and the check ring detects every one of the 54,600 single-ring corruptions it is shown. Passing proves those properties hold on the code in this repo. It does not show behaviour at other sizes or with other random seeds than the ones the tests fix.",
+      "how_we_got_it": "tests/test_gates.py, run with pytest after building the AVX2 kernel (the verify command copies the repo to a temp directory, runs ./build_kernel.sh there and runs the file, so nothing is written into your clone). The README table 'Verified Gate Results' records the measured values quoted in the claim. The machine and date of that table are not recorded in the repo; the DOSSIER names an Intel i5-8365U for Part 1 results.",
+      "use_in_your_work": "Storing many items by their residues (CRT address) and checking them: a memory that can say 'this read is corrupted' instead of returning a wrong answer silently, which is what you want in logs, caches and any pipeline where a bit flip must be caught.",
+      "honest_limits": "Gate 6 (latency) is a separate row (O2). The recall gate (68% vs 12%) is a rate on a fixed pseudo-random test, not a guarantee for other data.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O2",
+      "title": "Latency budgets: direct solve, resonator, AVX2 per-vector, ternary GEMV, ring-bank scan",
+      "claim": "Direct solve 0.342 ms (< 1.0 ms); resonator 4.239 ms (< 8.0 ms); shared-memory roundtrip 4.410 us (< 50 us); AVX2 kernel 0.465 us per 5,120-dim codevector (budget 1.25 us)",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_gates.py::test_gate_6_latency tests/test_avx2.py::test_avx2_batch_similarity_latency tests/test_ternary_gemv.py::test_ternary_gemv_latency_2048d tests/test_ring_bank.py::test_ring_bank_cross_attention_scan 2>&1 | tail -1 | grep -E \"^4 passed\"'",
+      "expect": "4 passed",
+      "evidence": [
+        "README.md",
+        "tests/test_gates.py",
+        "tests/test_avx2.py",
+        "tests/test_ternary_gemv.py",
+        "tests/test_ring_bank.py"
+      ],
+      "runtime_s": 60,
+      "what_it_means": "Four wall-clock tests: the CRT direct solve for 45 probes must finish in under 1 ms, a 15-iteration resonator solve under 8 ms, a shared-memory write+read under 50 microseconds, an AVX2 similarity under 1.25 microseconds per 5,120-dim codevector, a 2,048-dim ternary matrix-vector product under 10 ms, and a ring-bank cross-attention scan under 800 microseconds. Passing proves the speed budgets hold on THIS machine right now. It does not prove the README numbers, which were measured on the authors' machine.",
+      "how_we_got_it": "The same test files, with the budgets asserted inside them (tests/test_gates.py gate 6, tests/test_avx2.py, tests/test_ternary_gemv.py, tests/test_ring_bank.py). README.md 'Verified Gate Results' holds the measured values quoted in the claim; machine and date are not recorded there. In the REPO-ACCESS check run on 2026-10-16 the machine was under a load average near 40, and the avx2 and ring-bank budgets were missed in some runs.",
+      "use_in_your_work": "Deciding whether the ring memory is fast enough for a real-time loop on your hardware (for example an inference-time lookup budget), before you design around it.",
+      "honest_limits": "Timing tests are machine- and load-dependent: a failure here on a busy or older CPU is a measurement of your machine, not a defect in the arithmetic. The first row (O1) and the correctness rows do not depend on speed. The wall-clock tests in this repo assert fixed time budgets, so on a machine under heavy load they can fail without the maths being wrong; re-run on an idle machine.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O3",
+      "title": "Core ring maths and the golden SuperSeed files (codebook, bind/unbind, CRT, resonator, seed v1 and v1.1)",
+      "claim": "Seed v1 and v1.1 reproduce the committed golden files byte for byte; CRT check on all 54,600 single-ring errors; bind/unbind inverse and homomorphism hold",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_codebook.py tests/test_chain.py tests/test_crt.py tests/test_resonator.py tests/test_resonator_clamp.py tests/test_seed.py tests/test_seed11.py 2>&1 | tail -1 | grep -E \"^33 passed\"'",
+      "expect": "33 passed",
+      "evidence": [
+        "tests/golden/seed_v1.json",
+        "tests/golden/seed_v1_1.json",
+        "tests/test_seed.py",
+        "tests/test_crt.py",
+        "README.md"
+      ],
+      "runtime_s": 40,
+      "what_it_means": "Seven test files check the foundations: codewords have unit modulus, binding then unbinding returns the original, the residue (CRT) decode is exact including an exhaustive 54,600-corruption sweep, the resonator converges and its clamped recall works, and the SuperSeed seed generator reproduces two committed 'golden' files (tests/golden/seed_v1.json and seed_v1_1.json) exactly, with a mutation check proving the golden comparison can fail. Passing proves any dialect that matches the golden bytes agrees with this one. It does not prove a different implementation is fast or complete.",
+      "how_we_got_it": "tests/test_seed.py and test_seed11.py compare against the committed golden files; the others are ordinary pytest files run after the kernel build (the C kernel is checked against NumPy in test_seed.py::test_c_kernel_equals_numpy). The verify command runs them in a temp copy of the repo.",
+      "use_in_your_work": "Making your own port of the seed (another language or a GPU) provably interoperable: generate the same codewords, compare to the golden file, and only then trust shards written by the other side.",
+      "honest_limits": "Golden files pin the seed spec, not model quality. The numbers inside the golden files were produced by this code, so they show consistency across dialects, not an independent derivation.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O4",
+      "title": "AVX2 C kernel, polymorphic slot, gram hash and sift/solids agree with the NumPy reference",
+      "claim": "Polymorphic slot transcoding is 100% lossless (5,120/5,120 pairs); seqlock gives zero torn reads; the AVX2 sift equals the reference scores",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_avx2.py tests/test_polymorphic.py tests/test_gramhash.py tests/test_ternary_gemv.py tests/test_sift.py tests/test_solids.py --deselect tests/test_avx2.py::test_avx2_batch_similarity_latency --deselect tests/test_ternary_gemv.py::test_ternary_gemv_latency_2048d 2>&1 | tail -1 | grep -E \"^42 passed\"'",
+      "expect": "42 passed",
+      "evidence": [
+        "README.md",
+        "c_src/omniring_avx2.c",
+        "c_src/omniring_polymorphic.c",
+        "c_src/omniring_sift.c",
+        "tests/test_polymorphic.py",
+        "tests/test_sift.py"
+      ],
+      "runtime_s": 60,
+      "what_it_means": "After compiling the C kernel (AVX2 intrinsics) the tests compare every kernel entry point to the plain NumPy version: nibble-packed bind and unbind, the two-faced slot (ternary face and phase-ring face) with its reversible transcoding and seqlock, the gram hash, ternary matrix-vector product, the sift (nearest-codeword read) and the solids (geometry) helpers. Passing proves the fast C path gives the same answers as the slow reference on the tested inputs. It does not test other compilers or CPUs without AVX2.",
+      "how_we_got_it": "./build_kernel.sh compiles c_src (omniring_avx2.c, omniring_polymorphic.c, omniring_sift.c, omniring_sift_tiled.c, omniring_gramhash.c) with gcc -O3 -mavx2 -fopenmp; the six test files then run. The verify command does this in a temp copy.",
+      "use_in_your_work": "Using the C kernel as a drop-in for the NumPy path in your own pipeline, with a test you can run on your CPU that it still agrees.",
+      "honest_limits": "Requires an AVX2 CPU and gcc with OpenMP; without the kernel the package runs NumPy fallbacks and these kernel tests fail (README). Timing tests are in O2.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O5",
+      "title": "AVX-512 sift and popcount kernel (VNNI / VPOPCNTDQ) bit-identical to AVX2",
+      "claim": "sift.scores(backend=auto) uses the AVX-512 library when the CPU has avx512f/bw/vl/vpopcntdq/vnni, bit-identical to AVX2",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_avx512.py 2>&1 | tail -1 | grep -E \"passed\"'",
+      "expect": "2 passed, 3 skipped on an AVX2-only host (5 passed on an AVX-512 host)",
+      "evidence": [
+        "README.md",
+        "tests/test_avx512.py",
+        "c_src/omniring_avx512.c",
+        "build_kernel_avx512.sh"
+      ],
+      "runtime_s": 15,
+      "cpu_flags": [
+        "avx512f",
+        "avx512bw",
+        "avx512vl",
+        "avx512_vpopcntdq",
+        "avx512_vnni"
+      ],
+      "what_it_means": "Five tests for the AVX-512 build of the kernel (compiled by build_kernel_avx512.sh with -mavx512f/bw/vl/vpopcntdq/vnni). On a CPU without those flags the three that need the library are skipped and two checks of the fallback logic still pass; on an AVX-512 CPU all five run and must equal the AVX2 results bit for bit. Passing on AVX2 only proves the fallback is safe; the bit-identity claim is proven only on a host with the flags.",
+      "how_we_got_it": "tests/test_avx512.py; README says 'Run the suite (190 passed, 5 skipped on an AVX2 laptop; the 5 skips need AVX-512 or optional tools)'. In the 2026-10-16 check run on an AVX2-only host the full suite gave 190 passed, 3 skipped, 2 failed (the two failures are O2 timing and O11).",
+      "use_in_your_work": "On Intel/AMD server and recent desktop CPUs with AVX-512, a faster nearest-codeword read with the same answers as the portable path.",
+      "honest_limits": "This host has no AVX-512, so the bit-identity check was not run in the REPO-ACCESS verification; the runner marks it SKIP where the flags are absent.",
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O6",
+      "title": "PEEL cued multi-sweep readout recovers marks from crowded slots",
+      "claim": "Pre-registered bars: over 20 slots of 24 distinct marks, mean true marks recovered >= 12 with a bounded fake rate; a single clean mark reads back exactly",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_peel.py 2>&1 | tail -1 | grep -E \"^19 passed\"'",
+      "expect": "19 passed",
+      "evidence": [
+        "tests/test_peel.py",
+        "TECHNICAL-DISCLOSURE.md"
+      ],
+      "runtime_s": 150,
+      "what_it_means": "PEEL reads marks out of one shared slot by repeatedly reading the strongest, explaining it away and reading again. The 19 tests include the bars written down before the code existed (see the docstring of tests/test_peel.py): exact read of a single mark, recovery rates at 12 and 24 marks in a slot, and the rate of 'fake' marks. Passing proves the readout meets those bars on the seeded tests. It does not show recovery from slots holding far more marks than 24.",
+      "how_we_got_it": "tests/test_peel.py after the kernel build; it is the slowest file (about 90 seconds on a loaded machine). The bars are quoted from the plan the test file cites (the plan itself is unpublished).",
+      "use_in_your_work": "Packing many small facts into one fixed-size slot and reading them back with a measured false-positive rate, e.g. per-user marks in a shared cache line.",
+      "honest_limits": "The pre-registration document is not in the public repo; only the bars inside the test file can be checked. Runtime depends on machine load.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O7",
+      "title": "Program VM and five-line tick loop: tampered or public programs are refused",
+      "claim": "Keyed checks refuse public programs; tampered programs are refused; the tick loop is equivalent to its reference, pipelines, rolls back on a failed Check and bounds Decay",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_vm.py tests/test_loop.py 2>&1 | tail -1 | grep -E \"^13 passed\"'",
+      "expect": "13 passed",
+      "evidence": [
+        "tests/test_vm.py",
+        "tests/test_loop.py"
+      ],
+      "runtime_s": 120,
+      "what_it_means": "A tiny virtual machine runs programs stored as hypervectors. The tests check the pre-registered gate G1 (named in tests/test_vm.py), that a program without the right key or with a modified instruction is refused, and that the five-line tick loop is equivalent to a straightforward implementation, rolls back when its Check fails and keeps its Decay bounded. Passing proves those behaviours on the tested programs. It is not a security proof against a determined attacker.",
+      "how_we_got_it": "tests/test_vm.py and tests/test_loop.py after the kernel build; the two refusal tests take about 45 seconds each on a loaded machine.",
+      "use_in_your_work": "Running small programs out of a store where you need cheap tamper detection on every instruction.",
+      "honest_limits": "Tamper refusal is shown for the mutations the tests try; no adversarial analysis is claimed. The CORTEX-2 plan cited by the file is unpublished.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O8",
+      "title": "Storage layer: shared-memory bridge, query bus, store, mark store, shards, retrieval, telemetry",
+      "claim": "Shards round-trip bit-identically from the library, hot equals warm reads, shared-memory writes/reads round-trip",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_shm_bridge.py tests/test_bridge.py tests/test_query_bus.py tests/test_store.py tests/test_mark_store.py tests/test_shards.py tests/test_retrieval.py tests/test_telemetry.py 2>&1 | tail -1 | grep -E \"^48 passed\"'",
+      "expect": "48 passed",
+      "evidence": [
+        "SHARD-FORMAT.md",
+        "DATA-AND-SHARDS.md",
+        "tests/test_shards.py",
+        "tests/test_mark_store.py"
+      ],
+      "runtime_s": 90,
+      "what_it_means": "Eight files test where the data lives: the /dev/shm bridge round trip, the query bus, the store and mark store (18 tests), the shard library (write, index, search, tiered hot/warm routing and eviction, redaction, bit-identical round trip against the in-RAM version), retrieval and telemetry. Passing proves a shard written by this code reads back identically and that private data is redacted by the documented path. It does not test any shard you did not write with this code.",
+      "how_we_got_it": "The eight pytest files, run after the kernel build; the shard format is described in SHARD-FORMAT.md (CC BY 4.0). Shared-memory tests use their own segment names under /dev/shm in the temp run.",
+      "use_in_your_work": "Keeping your own data in the open shard format and reading it with a stable API, with tests that fail if the format drifts.",
+      "honest_limits": "Shared-memory tests need a writable /dev/shm (Linux). They do not test multi-machine use.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O9",
+      "title": "Learning core, gearbox, belt, ring transformer, ring bank, frames, gap style and logic",
+      "claim": "Ring-attentive transformer: constant-memory cross-attention, temporal rotation, step decoding and generation; shifting gears live never loses or changes an answer",
+      "kind": "run",
+      "verify": "bash -c 'T=$(mktemp -d) && tar --exclude=.git -cf - . | tar -xf - -C $T && cd $T && ./build_kernel.sh >/dev/null 2>&1 && PYTHONDONTWRITEBYTECODE=1 python3 -m pytest -q -p no:cacheprovider tests/test_core_learn.py tests/test_gearbox.py tests/test_belt.py tests/test_ring_transformer.py tests/test_ring_bank.py tests/test_frames.py tests/test_gap_style.py tests/test_logic.py --deselect tests/test_ring_bank.py::test_ring_bank_cross_attention_scan 2>&1 | tail -1 | grep -E \"^24 passed\"'",
+      "expect": "24 passed",
+      "evidence": [
+        "tests/test_ring_transformer.py",
+        "tests/test_gearbox.py",
+        "tests/test_core_learn.py",
+        "TECHNICAL-DISCLOSURE-PART-3.md"
+      ],
+      "runtime_s": 60,
+      "what_it_means": "Higher layers built on the ring memory: a learning core that answers clean slots and leaves a mark each tick, a gearbox whose live gear shifts never change an answer, a belt, a ring-attentive transformer (cross-attention, rotation by time, step decoding, generation, down-projection), the ring bank, frames, style and logic helpers. Passing proves these layers produce the expected outputs on the tested inputs. It does not claim language-model quality: the transformer tests check mechanics, not accuracy on text.",
+      "how_we_got_it": "The eight pytest files after the kernel build. The ring-bank scan timing test is in O2.",
+      "use_in_your_work": "Using the ring bank and attention layer as a constant-memory lookup component inside your own model, with mechanical tests for each part.",
+      "honest_limits": "Mechanics only; no benchmark on a language task is shown by these tests.",
+      "cpu_flags": [
+        "avx2"
+      ],
+      "needs": [
+        "python3 >= 3.10",
+        "numpy",
+        "pytest",
+        "gcc with OpenMP and AVX2 (build_kernel.sh builds the C kernel into a temp copy)"
+      ],
+      "corrections": []
+    },
+    {
+      "id": "O10",
+      "title": "Hypervector wire on 24,495 real tool steps (HV-0 result file)",
+      "claim": "24,495 real agent tool steps give 4,506 distinct requests; tool, head and argument decode accuracy 1.0; 0 collisions among 4,506 frames; frame 2,560 bytes",
+      "kind": "file",
+      "verify": "python3 -c \"import json;d=json.load(open('experiments/results/hv0.result.json'));assert d['n_steps']==24495 and d['n_distinct']==4506 and d['collisions']==0 and d['tool_acc']==1.0 and d['head_acc']==1.0 and d['arg_acc']==1.0 and d['frame_bytes']==2560 and d['PASS'] is True;print('HV-0 PASS',d['n_steps'],d['n_distinct'],d['frame_bytes'])\"",
+      "expect": "HV-0 PASS 24495 4506 2560",
+      "evidence": [
+        "experiments/results/hv0.result.json",
+        "experiments/harness/hv0.py",
+        "TECHNICAL-DISCLOSURE-PART-3.md"
+      ],
+      "runtime_s": 2,
+      "needs": [
+        "python3"
+      ],
+      "cpu_flags": [],
+      "what_it_means": "The committed result file records an experiment that encodes real (tool, head, argument) requests into 2,560-byte phase frames and decodes them back: every field decoded correctly, identical requests gave identical frames and no two of the 4,506 distinct requests collided. This check re-reads the file; it does not re-run the experiment. Passing proves the file says what Part 3 of the disclosure says. The input data (the authors' own fleet tool logs) is not in the repo, so the experiment itself cannot be re-run from a fresh clone.",
+      "how_we_got_it": "experiments/harness/hv0.py (pre-registered in a plan marked unpublished) wrote experiments/results/hv0.result.json; the harness imports the authors' private episode store, so it cannot run from a clone. The machine and date are not recorded in the file.",
+      "use_in_your_work": "Sending structured requests between processes as fixed-size hypervector frames with an exact decode, instead of serialising text.",
+      "honest_limits": "Not re-runnable from the public repo (private input). Result is on the authors' own request distribution, not a public dataset.",
+      "corrections": []
+    },
+    {
+      "id": "O11",
+      "title": "Shared-memory IPC round trip (IPC-0): resident C worker vs spawned process",
+      "claim": "Resident shared-memory C worker median 0.892 us vs spawned Python 32,322 us; verdict PASS, spawn over shm 36,236x",
+      "kind": "file",
+      "verify": "python3 -c \"import json;d=json.load(open('experiments/results/ipc0.result.json'));v=d['verdict'];assert v['PASS'] is True and d['c_shm_ring_c_worker']['n']==10000;print('IPC-0 PASS median_us',round(d['c_shm_ring_c_worker']['median_us'],3),'spawn_over_shm',round(v['spawn_over_shm']))\"",
+      "expect": "IPC-0 PASS median_us 0.892 spawn_over_shm 36237",
+      "evidence": [
+        "experiments/results/ipc0.result.json",
+        "experiments/harness/ipc0.py",
+        "experiments/PREREGISTRATIONS-OMNITRI.md"
+      ],
+      "runtime_s": 2,
+      "needs": [
+        "python3"
+      ],
+      "cpu_flags": [],
+      "what_it_means": "The result file compares four ways to get a 1 KB request answered: spawning a Python process (median 32,322 us), a resident Python server on a socket (9.55 us), a shared-memory ring with a resident C worker (0.892 us) and the authors' older subprocess path (169,696 us). Passing re-checks the committed file and its PASS verdict; it does not re-run the timings.",
+      "how_we_got_it": "experiments/harness/ipc0.py (wave 4 of experiments/PREREGISTRATIONS-OMNITRI.md); result in experiments/results/ipc0.result.json. To re-run: `python3 experiments/harness/ipc0.py` (needs the compiled ipc_worker.c; check the script header). Machine and date are not recorded in the file.",
+      "use_in_your_work": "Choosing shared memory with a resident worker over process spawning for tight request loops on one machine.",
+      "honest_limits": "Single machine, one payload size; timings are those of the authors' host. The 'today' row measured a private tool path (fleet-exec) that is not in this repo.",
+      "corrections": []
+    },
+    {
+      "id": "O12",
+      "title": "Twin-drift gate between the package and the authors' project tree",
+      "claim": "The project's src modules stay aliases of omni_ring.* and the project tests match the package tests",
+      "kind": "external",
+      "verify": "echo 'needs ~/projects/omniring-llm (authors private project tree); skipped by pytest on a fresh clone: tests/test_twin_drift.py'",
+      "expect": "skipped on a fresh clone",
+      "evidence": [
+        "tests/test_twin_drift.py"
+      ],
+      "runtime_s": 1,
+      "needs": [
+        "the authors' private project tree at ~/projects/omniring-llm"
+      ],
+      "cpu_flags": [],
+      "what_it_means": "A housekeeping gate that keeps a private working copy and this public package from drifting apart. It has no meaning for someone who only has this repo.",
+      "how_we_got_it": "tests/test_twin_drift.py is skipped when ~/projects/omniring-llm does not exist. In the 2026-10-16 check, run on a host where that tree exists, test_project_tests_match_package_tests failed because the project tree has test_train_harness.py, which is not in the public tests/ directory: the gate is genuinely red there.",
+      "use_in_your_work": "Not applicable to outside users; it shows how the authors guard against two copies diverging.",
+      "honest_limits": "Marked external because it cannot run without the private tree. On the authors' own host it currently FAILS (public tests/ lacks test_train_harness.py): either that file should be added to the public tests or the gate should list it as private.",
+      "corrections": []
+    }
+  ]
+}
