@@ -115,6 +115,10 @@ Run the suite (190 passed, 5 skipped on an AVX2 laptop; the 5 skips need AVX-512
 python3 -m pytest -q
 ```
 
+### MEM-1B reproducibility package
+
+[Harness, recorded Xeon result, limits and reproduction commands](experiments/mem1b/README.md) are now available for the clean-cue residue-address lookup experiment: 1,000 sampled lookups against a billion-row random-payload table, not arbitrary-content retrieval. The [safe automated tests](tests/test_mem1b.py) exercise a small control/smoke and validate the archived evidence without rerunning the billion-row allocation.
+
 ### Verified Gate Results
 
 | Test / Gate | Target / Requirement | Measured Output | Status |

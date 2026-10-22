@@ -341,6 +341,32 @@
       "use_in_your_work": "Not applicable to outside users; it shows how the authors guard against two copies diverging.",
       "honest_limits": "Marked external because it cannot run without the private tree. On the authors' own host it currently FAILS (public tests/ lacks test_train_harness.py): either that file should be added to the public tests or the gate should list it as private.",
       "corrections": []
+    },
+    {
+      "id": "O13",
+      "title": "MEM-1B archived billion-row evidence and safe reproduction smoke",
+      "claim": "Historical Xeon result records 1000/1000 clean-cue lookups over a billion-row payload table; current test verifies archived snapshots and small-scale execution only.",
+      "kind": "run",
+      "verify": "python3 -m unittest discover -s tests -p 'test_mem1b.py' -v",
+      "expect": "OK (3 tests; includes control and small smoke with recall 1.0)",
+      "evidence": [
+        "experiments/mem1b/README.md",
+        "experiments/mem1b/original/mem1b.py",
+        "experiments/mem1b/mem1b.py",
+        "experiments/mem1b/results/xeon-8481c.json",
+        "experiments/mem1b/PROVENANCE.json",
+        "tests/test_mem1b.py"
+      ],
+      "runtime_s": 5,
+      "needs": [
+        "Python 3.10+, NumPy, Linux"
+      ],
+      "cpu_flags": [],
+      "what_it_means": "A known integer address is bundled into quantized phase codewords, decoded by direct probing and CRT, then used to fetch a random payload row.",
+      "how_we_got_it": "2026-10-15 historical Xeon 8481C run: 1000 sampled lookups, 40.099 ms median, 40.509 ms p95; portable publication runs a 200-lookup control and 20-lookup 1000-row smoke.",
+      "use_in_your_work": "Inspect linked evidence; use README commands for a small run, or explicitly opt into the RAM-heavy full configuration.",
+      "honest_limits": "No full billion rerun in this test. No arbitrary-content or noisy-cue claim. Timed path includes cue construction, decode and payload fetch; verification is outside timer. bytes_touched is int8-equivalent accounting, not measured DRAM traffic. Exact historical dependency versions were not recorded.",
+      "corrections": []
     }
   ]
 }

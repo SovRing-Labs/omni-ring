@@ -1,0 +1,58 @@
+{
+ "argv": [
+  "/root/results/B1-hv1e9/r.json",
+  "1000000000",
+  "1000"
+ ],
+ "cpu": "Intel(R) Xeon(R) Platinum 8481C CPU @ 2.70GHz",
+ "nproc": 8,
+ "MEM0_control_1365": {
+  "N_stored": 1365,
+  "address_space": 1365,
+  "moduli": [
+   3,
+   5,
+   7,
+   13,
+   17
+  ],
+  "probes": 45,
+  "dimension": 5120,
+  "payload_bytes": 64,
+  "lookups": 200,
+  "recall": 1.0,
+  "wrong_examples": [],
+  "ms_median": 0.6188154220581055,
+  "ms_p95": 0.6423234939575195,
+  "bytes_scanned": 0,
+  "bytes_touched": 230464,
+  "table_bytes": 87360,
+  "codebook_s": 0.012941122055053711,
+  "payload_build_s": 0.0003407001495361328,
+  "rss_peak_mb": 41.76171875
+ },
+ "MEM1B_1000000000": {
+  "N_stored": 1000000000,
+  "address_space": 1019050649,
+  "moduli": [
+   997,
+   1009,
+   1013,
+   1019
+  ],
+  "probes": 4038,
+  "dimension": 5120,
+  "payload_bytes": 8,
+  "lookups": 1000,
+  "recall": 1.0,
+  "wrong_examples": [],
+  "ms_median": 40.099263191223145,
+  "ms_p95": 40.509235858917236,
+  "bytes_scanned": 0,
+  "bytes_touched": 20674568,
+  "table_bytes": 8000000000,
+  "codebook_s": 0.9557726383209229,
+  "payload_build_s": 22.160554885864258,
+  "rss_peak_mb": 8681.2890625
+ }
+}

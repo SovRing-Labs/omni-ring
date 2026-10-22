@@ -1,0 +1,17 @@
+{
+  "recorded_run_date_utc": "2026-10-15",
+  "source_base_commit_for_public_adaptation": "687edb7a5bb77981c3146b7904beeb75c6e350b7",
+  "historical_runtime_dependency_commit": "not recorded in supplied artifacts",
+  "snapshot_method": "Text returned by repository read_file, with its transport header removed; text content retained without JSON reserialization. These hashes identify the published UTF-8 snapshots, not independently verified original disk bytes or terminal-newline metadata.",
+  "source_paths": {
+    "original/mem1b.py": "projects/outreach/gcp-cpu/b1/mem1b.py",
+    "results/xeon-8481c.json": "projects/outreach/gcp-cpu/results/gcp-i/B1-hv1e9/r.json"
+  },
+  "run_context_source": "projects/outreach/gcp-cpu/flights/GCP-B1.result.md (not published; only run date and machine context summarized)",
+  "published_snapshot_sha256": {
+    "original/mem1b.py": "6d41c5b3bb31af3ba460004dbd36fdb6b3b6ff9be6be48eec6fed09f1aee1c82",
+    "results/xeon-8481c.json": "21aa3774489cf9a3c82ceee819b41dbfb7f72ccc355f94b68061d94cccf33bfd"
+  },
+  "adaptation": "Repository-relative import plus CLI validation, allocation opt-in and output protection; numerical loop retained.",
+  "publication_validation": "Small control and 1000-row smoke only; no billion-row rerun."
+}
